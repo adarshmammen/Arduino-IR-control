@@ -4,6 +4,38 @@ int RECV_PIN = 15;
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
+// Philips Audio System Control
+void volDown()
+{ 
+  irsend.sendNEC(0x10EFA857, 32); // Philips Volume Up
+}
+
+void reduceBass()
+{
+  irsend.sendNEC(0x10EFE817, 32); //Philips reduce bass
+}
+void volUp()
+{
+  irsend.sendNEC(0x10EF28D7, 32); // Philips Volume Up
+}
+
+void setVol()
+{
+  for (int i = 0; i < 3; i++) {
+    irsend.sendNEC(0x10EF00FF, 32); //Philips '1' code
+    delay(40);
+  }
+  for (int i = 0; i < 6; i++) {
+    reduceBass();
+    delay(200);
+  }
+  for(int i=0;i<10;i++)
+  {
+    volUp();
+    delay(200);
+  }
+}
+//end of audio system control
 
 
 void setup()
