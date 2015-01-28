@@ -1,4 +1,4 @@
 secret-wallhack
 ===============
 
-Sony IR code controls the fans and lights
+Sony IR codes controls the fans, lights and a Philips Home Theater?!
