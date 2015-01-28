@@ -1,7 +1,10 @@
 /*
-* This program uses an IR transmitter and reciever simultaneously 
+ 
+ * This program uses an IR transmitter and reciever simultaneously 
  * It will not work with the original Library from Ken Shirrif, but instead with the modified one by targetto
+ * I have forked his library in my profile
  * Sony Power or 'A20' will send a series of NEC commands
+ 
  */
 
 #include <IRremote.h> // targetto's library
