@@ -1,6 +1,14 @@
+/*
+* This program uses an IR transmitter and reciever simultaneously 
+ * It will not work with the original Library from Ken Shirrif, but instead with the modified one by targetto
+ * Sony Power or 'A20' will send a series of NEC commands
+ */
 
-#include <IRremote.h>
-int RECV_PIN = 15;
+#include <IRremote.h> // targetto's library
+#include <IRremoteInt.h>
+IRsend irsend;
+
+int RECV_PIN = 15; // TSOP reciever
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
@@ -18,23 +26,6 @@ void volUp()
 {
   irsend.sendNEC(0x10EF28D7, 32); // Philips Volume Up
 }
-
-void setVol()
-{
-  for (int i = 0; i < 3; i++) {
-    irsend.sendNEC(0x10EF00FF, 32); //Philips '1' code
-    delay(40);
-  }
-  for (int i = 0; i < 6; i++) {
-    reduceBass();
-    delay(200);
-  }
-  for(int i=0;i<10;i++)
-  {
-    volUp();
-    delay(200);
-  }
-}
 //end of audio system control
 
 
@@ -42,14 +33,14 @@ void setup()
 {
   Serial.begin(9600);
   irrecv.enableIRIn(); // Start the receiver
-  pinMode(11,OUTPUT);
-  pinMode(12,OUTPUT);
-  pinMode(13,OUTPUT);
+  pinMode(10,OUTPUT); //Light
+  pinMode(11,OUTPUT);//fan1
+  pinMode(12,OUTPUT);//fan2
 }
 
 void loop() {
   if (irrecv.decode(&results)) {
-    //Serial.println(results.value, HEX); 
+    //Serial.println(results.value, HEX); //for debugging only
 
     switch(results.value)
     {
@@ -89,14 +80,31 @@ void loop() {
       digitalWrite(13,LOW);
       delay(200);
       break;
+
+    case 0xA90: 
+
+      {
+        delay(1200);
+        for (int i = 0; i < 3; i++) {
+          irsend.sendNEC(0x10EF00FF, 32); //Philips '1' code
+          delay(500);
+        }
+        for (int i = 0; i < 6; i++) {
+          reduceBass();
+          delay(400);
+        }
+        for(int i=0;i<10;i++)
+        {
+          volUp();
+          delay(400);
+        }
+        irrecv.enableIRIn();
+        break;
+      }
+
     }
 
-
+    delay(100);
     irrecv.resume(); // Receive the next value
   }
-} 
-
-
-
-
-
+}
