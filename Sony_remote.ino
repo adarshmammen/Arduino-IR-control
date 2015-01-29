@@ -34,7 +34,7 @@ void volUp()
 
 void setup()
 {
-  Serial.begin(9600);
+  //Serial.begin(9600);
   irrecv.enableIRIn(); // Start the receiver
   pinMode(10,OUTPUT); //Light
   pinMode(11,OUTPUT);//fan1
