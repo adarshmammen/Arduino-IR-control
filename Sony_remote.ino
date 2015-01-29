@@ -50,37 +50,37 @@ void loop() {
 
     case 0xC10: 
 
-      digitalWrite(11,HIGH);
+      digitalWrite(10,HIGH);
       delay(200);
       break;
 
     case 0x210: 
 
-      digitalWrite(11,LOW);
+      digitalWrite(10,LOW);
       delay(200);
       break;
 
     case 0x610: 
 
-      digitalWrite(12,HIGH);
+      digitalWrite(11,HIGH);
       delay(200);
       break;
 
     case 0xE10: 
 
-      digitalWrite(12,LOW);
+      digitalWrite(11,LOW);
       delay(200);
       break;
 
     case 0x10: 
 
-      digitalWrite(13,HIGH);
+      digitalWrite(12,HIGH);
       delay(200);
       break;
 
     case 0x810: 
 
-      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
       delay(200);
       break;
 
