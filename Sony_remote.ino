@@ -1,8 +1,8 @@
 /*
  
  * This program uses an IR transmitter and reciever simultaneously 
- * It will not work with the original Library from Ken Shirrif, but instead with the modified one by targetto
- * I have forked his library in my profile
+ * It will not work with the original library from Ken Shirrif, instead with the modified one by targetto
+ * I have forked his library to my profile
  * Sony Power or 'A20' will send a series of NEC commands
  
  */
@@ -101,7 +101,6 @@ void loop() {
           volUp();
           delay(400);
         }
-        irrecv.enableIRIn();
         break;
       }
 
